@@ -39,9 +39,9 @@ const Header = () => {
                 <div className="col-sm-3 col-lg-3">
                   <div className="col-lg-4">
                     <Link
-                      to="/signup"
+                      to="/register"
                       className="text-decoration-none text-white"
-                      title="signup"
+                      title="register"
                     >
                       <i className="fas fa-user-plus fs-3 my-3"></i>
                     </Link>
