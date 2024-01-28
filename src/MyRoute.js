@@ -8,6 +8,7 @@ import Products from './pages/Products'
 import NotFound from './pages/NotFound'
 import Register from './auth/Register'
 import EmailVerify from './auth/EmailVerify'
+import Login from './auth/Login'
 
 const MyRoute = () => {
   return (
@@ -21,6 +22,8 @@ const MyRoute = () => {
                     <Route path='products' element={<Products/>} />
                     <Route path='register' element={<Register/>} />
                     <Route path='email/confirmation/:token' element={<EmailVerify/>} />
+                    <Route path='signin' element={<Login/>} />
+
 
                 </Route>
                 <Route path='/*' element={<NotFound/>}/>
