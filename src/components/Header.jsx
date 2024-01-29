@@ -1,7 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState,useEffect} from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { isAuthenticated,signout } from "../auth";
+
 
 const Header = () => {
+  const navigate=useNavigate()
+  const [products,setProducts]=useState([])
+
+  useEffect(()=>{
+    const cartItems=JSON.parse(localStorage.getItem('cartItems'))
+    if(cartItems && cartItems.length>0){
+      setProducts(cartItems)
+    }
+    else{
+      setProducts([])
+    }
+  },[])
   return (
     <>
       <div className="container-fluid">
@@ -27,26 +41,63 @@ const Header = () => {
           <div className="col-lg-3">
             <div className="d-flex">
               <>
-                <div className="offset-sm-2 col-sm-3 col-lg-3">
+                {
+                  isAuthenticated() && isAuthenticated().user.role===1 &&
+                  <div className="offset-sm-2 col-sm-3 col-lg-3 mt-3">
                   <Link
-                    to="/signin"
+                    to="/admin/dashboard"
                     className="text-decoration-none text-white"
-                    title="signin"
+                    title="admin"
                   >
-                    <i className="fas fa-sign-in-alt fs-3 my-3"></i>
+                    
                   </Link>
                 </div>
-                <div className="col-sm-3 col-lg-3">
-                  <div className="col-lg-4">
+                }
+                {
+                  isAuthenticated() && isAuthenticated().user.role===0 &&
+                  <div className="offset-sm-2 col-sm-3 col-lg-3 mt-3">
+                  <Link
+                    to="/profile"
+                    className="text-decoration-none text-white"
+                    title="profile"
+                  >
+                    Profile
+                  </Link>
+                </div>
+                }
+
+              {! isAuthenticated() && <>
+                <div className="offset-sm-2 col-sm-3 col-lg-3">
                     <Link
-                      to="/register"
+                      to="/signin"
                       className="text-decoration-none text-white"
-                      title="register"
+                      title="signin"
                     >
-                      <i className="fas fa-user-plus fs-3 my-3"></i>
+                      <i className="fas fa-sign-in-alt fs-3 my-3"></i>
                     </Link>
                   </div>
+                  <div className="col-sm-3 col-lg-3">
+                    <div className="col-lg-4">
+                      <Link
+                        to="/register"
+                        className="text-decoration-none text-white"
+                        title="register"
+                      >
+                        <i className="fas fa-user-plus fs-3 my-3"></i>
+                      </Link>
+                    </div>
+                  </div>
+              </>}
+                {isAuthenticated() &&
+                  <div className="col-lg-3">
+                    <button className="btn btn-danger mt-2 me-2"
+                    onClick={()=>signout(()=>{
+                      navigate('/signin')
+                    })}
+                    >Logout</button>
                 </div>
+                }
+                
               </>
 
               <div className="col-sm-3 col-lg-3">
@@ -61,7 +112,7 @@ const Header = () => {
                         className="position-absolute top-0 start-100 bg-warning badge rounded-pill translate-middle text-dark"
                         style={{ fontSize: "12px" }}
                       >
-                        <span>5</span>
+                        <span>{products && products.length}</span>
                       </span>
                     </i>
                   </Link>

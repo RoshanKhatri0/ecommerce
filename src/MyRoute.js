@@ -9,6 +9,10 @@ import NotFound from './pages/NotFound'
 import Register from './auth/Register'
 import EmailVerify from './auth/EmailVerify'
 import Login from './auth/Login'
+import Profile from './pages/Profile'
+import PrivateRoute from './auth/PrivateRoute'
+import AdminRoute from './auth/AdminRoute'
+import Dashboard from './admin/Dashboard'
 
 const MyRoute = () => {
   return (
@@ -23,8 +27,13 @@ const MyRoute = () => {
                     <Route path='register' element={<Register/>} />
                     <Route path='email/confirmation/:token' element={<EmailVerify/>} />
                     <Route path='signin' element={<Login/>} />
-
-
+                </Route>
+                <Route path='/' element={<PrivateRoute/>} >
+                  <Route path='profile' element={<Profile/>} />
+                </Route>
+                {/* admin route */}
+                <Route path='admin/' element={<AdminRoute/>}>
+                  <Route path='dashboard' element={<Dashboard/>}/>
                 </Route>
                 <Route path='/*' element={<NotFound/>}/>
             </Routes>

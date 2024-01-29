@@ -42,7 +42,7 @@ const handleSubmit=e=>{
 const redirectUser=()=>{
     if(redirectToPage){
         if(user && user.role ===1){
-            return navigate('admin/dashboard')
+            return navigate('/admin/dashboard')
         }
         else{
             return navigate('/')
