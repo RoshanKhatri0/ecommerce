@@ -49,7 +49,7 @@ const Header = () => {
                     className="text-decoration-none text-white"
                     title="admin"
                   >
-                    
+                    Admin
                   </Link>
                 </div>
                 }
