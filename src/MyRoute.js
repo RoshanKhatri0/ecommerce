@@ -14,6 +14,9 @@ import PrivateRoute from './auth/PrivateRoute'
 import AdminRoute from './auth/AdminRoute'
 import Dashboard from './admin/Dashboard'
 import AddCategory from './admin/AddCategory'
+import AddProduct from './admin/AddProduct'
+import Product from './admin/Product'
+import UpdateProduct from './admin/UpdateProduct'
 
 const MyRoute = () => {
   return (
@@ -36,6 +39,10 @@ const MyRoute = () => {
                 <Route path='admin/' element={<AdminRoute/>}>
                   <Route path='dashboard' element={<Dashboard/>}/>
                   <Route path='addcategory' element={<AddCategory/>}/>
+                  <Route path='addproduct' element={<AddProduct/>}/>
+                  <Route path='product' element={<Product/>}/>
+                  <Route path='updateproduct/:productId' element={<UpdateProduct/>}/>
+                  
 
                 </Route>
                 <Route path='/*' element={<NotFound/>}/>
