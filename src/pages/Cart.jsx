@@ -50,17 +50,17 @@ const Cart = () => {
         setProducts(filterCart)
         toast.success(`${name} is removed from the cart`)
     }
-    // shipping handler
-    // const shippingHandler=()=>{
-    //     navigate('/signin?redirect=shipping')
-    // }
+    //shipping handler
+    const shippingHandler=()=>{
+        navigate('/shipping')
+    }
     return (
         <>
             <ToastContainer theme='colored' position='top-center' />
             <div className="container">
 
                 <div className="row justify-content-between my-5">
-                    {products && products.length == 0 ?
+                    {products && products.length === 0 ?
                         <h2 className="text-center text-danger mt-3">Your Cart is Empty</h2>
                         : (
                             <>
@@ -108,7 +108,7 @@ const Cart = () => {
                                         <br />
                                         <span><b>Total:</b> Rs.{products.reduce((ac,item)=>(ac+item.quantity*item.price),0)}</span>
                                         <hr />
-                                        <button className="btn btn-warning">CheckOut</button>
+                                        <button className="btn btn-warning" onClick={shippingHandler}>CheckOut</button>
                                     </div>
                                 </div>
                             </>
